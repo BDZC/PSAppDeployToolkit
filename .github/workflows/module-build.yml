@@ -49,8 +49,8 @@ jobs:
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
       uses: azure/login@v2
       with:
-        client-id: ${{ b42d8f61-38aa-4208-b41a-4060a93e563a }}
-        tenant-id: ${{ 18f4079d-bf90-4f33-949a-4de0ee101e52 }}
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Test and Build
