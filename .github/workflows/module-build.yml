@@ -45,6 +45,14 @@ jobs:
     - name: Install AzureSignTool
       run: dotnet tool install --global azuresigntool
 
+    - name: Azure Login
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+      uses: azure/login@v2
+      with:
+        client-id: ${{ b42d8f61-38aa-4208-b41a-4060a93e563a }}
+        tenant-id: ${{ 18f4079d-bf90-4f33-949a-4de0ee101e52 }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
     - name: Test and Build
       shell: powershell
       run: Invoke-Build -File .\src\PSAppDeployToolkit.build.ps1
